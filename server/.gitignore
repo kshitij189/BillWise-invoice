@@ -1,0 +1,27 @@
+### Java / Spring Boot / Maven / Gradle
+target/
+build/
+.gradle/
+.settings/
+.classpath
+.project
+*.class
+*.jar
+!*.jar/
+!.mvn/wrapper/maven-wrapper.jar
+*.war
+*.ear
+
+### IDEs
+.idea/
+*.iml
+.vscode/
+
+### Environment / Sensitive
+src/main/resources/application.properties
+.env
+.env.*
+
+### OS Files
+Thumbs.db
+.DS_Store

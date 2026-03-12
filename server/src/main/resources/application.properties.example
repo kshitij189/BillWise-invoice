@@ -1,0 +1,31 @@
+server.port=5000
+
+# MongoDB Configuration
+# Replace with your local or cloud MongoDB URI
+spring.data.mongodb.uri=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@your-cluster-url/database-name?retryWrites=true&w=majority
+
+# Security Keys
+# Use a strong, unique secret key
+jwt.secret=your-super-secret-jwt-key-here
+jwt.expiration=43200000
+
+# Email Configuration (Mailtrap example)
+spring.mail.host=sandbox.smtp.mailtrap.io
+spring.mail.port=2525
+spring.mail.username=your-mailtrap-username
+spring.mail.password=your-mailtrap-password
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# Frontend URL
+react.app.url=http://localhost:5173
+
+# Servlet Settings
+spring.servlet.multipart.max-file-size=30MB
+spring.servlet.multipart.max-request-size=30MB
+
+# Thymeleaf Settings
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.mode=HTML
+spring.thymeleaf.encoding=UTF-8

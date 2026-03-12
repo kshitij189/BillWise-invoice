@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .header {
+            background: linear-gradient(135deg, #1976d2, #1565c0);
+            padding: 32px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+        .header p {
+            color: rgba(255,255,255,0.85);
+            margin: 8px 0 0;
+            font-size: 14px;
+        }
+        .body-content {
+            padding: 32px;
+        }
+        .invoice-badge {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .amount-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .amount-label {
+            color: #666;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .amount-value {
+            color: #1976d2;
+            font-size: 36px;
+            font-weight: 700;
+            margin: 8px 0;
+        }
+        .btn {
+            display: inline-block;
+            background: #1976d2;
+            color: #ffffff;
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 24px 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="card">
+            <div class="header">
+                <h1 th:text="${companyName != null ? companyName : 'BillWise'}">BillWise</h1>
+                <p>Invoice Notification</p>
+            </div>
+            <div class="body-content">
+                <span class="invoice-badge" th:text="'Invoice ' + (${invoiceNumber} != null ? ${invoiceNumber} : '---')">Invoice #---</span>
+
+                <p style="color: #333; line-height: 1.6;">
+                    You have received an invoice. Please find the details below and the PDF attached to this email.
+                </p>
+
+                <div class="amount-box">
+                    <div class="amount-label">Balance Due</div>
+                    <div class="amount-value">
+                        <span th:text="${currency != null ? currency : '$'}">$</span>
+                        <span th:text="${balance != null ? balance : '0.00'}">0.00</span>
+                    </div>
+                </div>
+
+                <hr class="divider"/>
+
+                <p style="text-align: center; margin: 28px 0;">
+                    <a th:href="${link != null ? link : '#'}" class="btn">View Invoice Online</a>
+                </p>
+
+                <p style="color: #888; font-size: 13px; text-align: center;">
+                    The invoice PDF is attached to this email for your records.
+                </p>
+            </div>
+            <div class="footer">
+                <p th:text="'This email was sent by ' + (${companyName} != null ? ${companyName} : 'BillWise') + ' via BillWise.'">
+                    This email was sent via BillWise.
+                </p>
+                <p>&copy; BillWise. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
