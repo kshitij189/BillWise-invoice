@@ -16,13 +16,16 @@ import java.util.Map;
 @Component
 public class JwtUtil {
 
-    @Value("${jwt.secret}")
-    private String secret;
-
-    @Value("${jwt.expiration}")
-    private long expiration;
-
+    private final String secret;
+    private final long expiration;
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    public JwtUtil(
+            @Value("${jwt.secret:s7sFu8vT2mL9xYpR1w6ZcU0bN4hJk3Qe1rV1tB5aSdGzXoP}") String secret,
+            @Value("${jwt.expiration:43200000}") long expiration) {
+        this.secret = secret;
+        this.expiration = expiration;
+    }
 
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
