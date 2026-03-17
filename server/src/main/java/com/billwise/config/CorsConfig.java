@@ -13,8 +13,11 @@ import java.util.List;
 @Configuration
 public class CorsConfig {
 
-    @Value("${react.app.url}")
-    private String frontendUrl;
+    private final String frontendUrl;
+
+    public CorsConfig(@Value("${react.app.url:http://localhost:5173}") String frontendUrl) {
+        this.frontendUrl = frontendUrl;
+    }
 
     @Bean
     public CorsFilter corsFilter() {
