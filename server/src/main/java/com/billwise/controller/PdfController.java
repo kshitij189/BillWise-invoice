@@ -29,6 +29,10 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 @RestController
 public class PdfController {
 
+    private final PdfService pdfService;
+    private final EmailService emailService;
+    private final InvoiceService invoiceService;
+    private final ProfileService profileService;
     private final String reactAppUrl;
     private final String serverPort;
 

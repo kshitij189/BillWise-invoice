@@ -16,6 +16,11 @@ import java.util.*;
 @Service
 public class UserService {
 
+    private final UserRepository userRepository;
+    private final ProfileRepository profileRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
+    private final EmailService emailService;
     private final String reactAppUrl;
 
     public UserService(UserRepository userRepository, ProfileRepository profileRepository,
