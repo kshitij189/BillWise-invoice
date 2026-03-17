@@ -26,18 +26,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors(org.springframework.security.config.Customizer.withDefaults())
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/users/**").permitAll()
-                .requestMatchers("/send-pdf").permitAll()
-                .requestMatchers("/create-pdf").permitAll()
-                .requestMatchers("/fetch-pdf").permitAll()
-                .requestMatchers("/public/pdf/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .cors(org.springframework.security.config.Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/users/**").permitAll()
+                        .requestMatchers("/send-pdf").permitAll()
+                        .requestMatchers("/create-pdf").permitAll()
+                        .requestMatchers("/fetch-pdf").permitAll()
+                        .requestMatchers("/public/pdf/**").permitAll()
+                        .anyRequest().authenticated())
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
