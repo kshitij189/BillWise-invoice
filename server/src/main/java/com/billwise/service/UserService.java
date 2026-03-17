@@ -16,22 +16,17 @@ import java.util.*;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-    private final ProfileRepository profileRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
-    private final EmailService emailService;
-
-    @Value("${react.app.url}")
-    private String reactAppUrl;
+    private final String reactAppUrl;
 
     public UserService(UserRepository userRepository, ProfileRepository profileRepository,
-                       PasswordEncoder passwordEncoder, JwtUtil jwtUtil, EmailService emailService) {
+                       PasswordEncoder passwordEncoder, JwtUtil jwtUtil, EmailService emailService,
+                       @Value("${react.app.url:http://localhost:5173}") String reactAppUrl) {
         this.userRepository = userRepository;
         this.profileRepository = profileRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
         this.emailService = emailService;
+        this.reactAppUrl = reactAppUrl;
     }
 
     public AuthResponse signIn(SignInRequest request) {

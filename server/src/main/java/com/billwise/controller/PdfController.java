@@ -29,26 +29,22 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 @RestController
 public class PdfController {
 
-    private final PdfService pdfService;
-    private final EmailService emailService;
-    private final InvoiceService invoiceService;
-    private final ProfileService profileService;
-
-    @Value("${react.app.url}")
-    private String reactAppUrl;
-
-    @Value("${server.port:5000}")
-    private String serverPort;
+    private final String reactAppUrl;
+    private final String serverPort;
 
     // Temporary storage for generated PDFs
     private final ConcurrentHashMap<String, byte[]> pdfStore = new ConcurrentHashMap<>();
 
     public PdfController(PdfService pdfService, EmailService emailService, 
-                         InvoiceService invoiceService, ProfileService profileService) {
+                         InvoiceService invoiceService, ProfileService profileService,
+                         @Value("${react.app.url:http://localhost:5173}") String reactAppUrl,
+                         @Value("${server.port:5000}") String serverPort) {
         this.pdfService = pdfService;
         this.emailService = emailService;
         this.invoiceService = invoiceService;
         this.profileService = profileService;
+        this.reactAppUrl = reactAppUrl;
+        this.serverPort = serverPort;
     }
 
     @PostMapping("/send-pdf")
